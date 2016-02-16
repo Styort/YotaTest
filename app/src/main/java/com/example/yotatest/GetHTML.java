@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -34,7 +35,8 @@ class GetHtmlTask extends AsyncTask<String, String, String> {
             HttpURLConnection connection = (HttpURLConnection) urlCl.openConnection();
             connection.setRequestMethod("GET");
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream(), "windows-1251");
+            BufferedReader reader = new BufferedReader(inputStreamReader);
 
             for (String line; (line = reader.readLine()) != null; ) {
                 html.append(line+"\n");
