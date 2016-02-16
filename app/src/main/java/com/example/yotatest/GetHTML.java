@@ -34,8 +34,20 @@ class GetHtmlTask extends AsyncTask<String, String, String> {
             URL urlCl = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) urlCl.openConnection();
             connection.setRequestMethod("GET");
+            String enc = connection.getContentType();
+            String contentType = connection.getContentType();
+            String[] values = contentType.split(";"); // values.length should be 2
+            String charset = "";
 
-            InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream(), "UTF-8");
+            for (String value : values) {
+                value = value.trim();
+
+                if (value.toLowerCase().startsWith("charset=")) {
+                    charset = value.substring("charset=".length());
+                }
+            }
+            InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream(),charset);
+
             BufferedReader reader = new BufferedReader(inputStreamReader);
 
             for (String line; (line = reader.readLine()) != null; ) {
