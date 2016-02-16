@@ -34,11 +34,11 @@ class GetHtmlTask extends AsyncTask<String, String, String> {
             URL urlCl = new URL(url);
             HttpURLConnection connection = (HttpURLConnection) urlCl.openConnection();
             connection.setRequestMethod("GET");
+            //определение кодировки страницы
             String enc = connection.getContentType();
             String contentType = connection.getContentType();
             String[] values = contentType.split(";"); // values.length should be 2
             String charset = "";
-
             for (String value : values) {
                 value = value.trim();
 
@@ -46,6 +46,7 @@ class GetHtmlTask extends AsyncTask<String, String, String> {
                     charset = value.substring("charset=".length());
                 }
             }
+            //считываем HTML
             InputStreamReader inputStreamReader = new InputStreamReader(connection.getInputStream(),charset);
 
             BufferedReader reader = new BufferedReader(inputStreamReader);

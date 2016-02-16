@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getHTMLcodeClick(){
-
         getHTMLbutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
