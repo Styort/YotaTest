@@ -35,7 +35,6 @@ class GetHtmlTask extends AsyncTask<String, String, String> {
             HttpURLConnection connection = (HttpURLConnection) urlCl.openConnection();
             connection.setRequestMethod("GET");
             //определение кодировки страницы
-            String enc = connection.getContentType();
             String contentType = connection.getContentType();
             String[] values = contentType.split(";"); // values.length should be 2
             String charset = "";
