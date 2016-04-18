@@ -28,7 +28,10 @@ public class MainActivity extends AppCompatActivity {
         initElem();
         getHTMLcodeClick();
     }
-
+    protected void onStop() {
+        super.onStop();
+        getHtmlTask.cancel(true);
+    }
     private void initElem() {
         urlET = (EditText)findViewById(R.id.urlET);
         getHTMLbutt = (Button)findViewById(R.id.getHTMLbutt);
